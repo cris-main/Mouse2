@@ -9,6 +9,6 @@ UserInputService.InputBegan:Connect(function(input, gameProcessed)
     if input.KeyCode == Enum.KeyCode.LeftAlt then
         isMouse2Enabled = not isMouse2Enabled
         Mouse2:MouseLockEnabled(isMouse2Enabled)
-        Mouse2:MouseTrailEnabled(isMouse2Enabled)
     end
 end)
+ Mouse2:MouseTrailEnabled(true) -- Enable mouse trail effect

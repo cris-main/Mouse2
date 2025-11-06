@@ -309,9 +309,17 @@ function Mouse2:MouseTrailEnabled(enabled: boolean, options: table?)
 
 		-- Update the part's position to follow the mouse
 		trailConnection = RunService.RenderStepped:Connect(function()
-			local mouseHit = mouse.Hit
-			if mouseHit then
-				trailPart.CFrame = mouseHit
+			-- Raycast from the center of the Mouse
+			local ray = Camera:ScreenPointToRay(mouse.X, mouse.Y)
+			local raycastParams = RaycastParams.new()
+			raycastParams.FilterDescendantsInstances = { player.Character, trailPart }
+			raycastParams.FilterType = Enum.RaycastFilterType.Blacklist
+			local raycastResult = workspace:Raycast(ray.Origin, ray.Direction * 1000, raycastParams)
+			if raycastResult then
+				trailPart.Position = raycastResult.Position
+			else
+				-- If no hit, position the part far along the ray
+				trailPart.Position = ray.Origin + ray.Direction * 1000
 			end
 		end)
 	end
