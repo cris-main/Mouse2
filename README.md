@@ -5,3 +5,4 @@ The module is created for the purpose of mobile Shiftlocking.
 ## Features
 * Smooth Shiftlock.
 * Customizable Crosshair.
+* Mouse trail effect
